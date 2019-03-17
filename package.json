@@ -1,0 +1,23 @@
+{
+  "name": "nick-mobile",
+  "version": "0.0.1",
+  "description": "a Vue 2.x UI Framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NickChuCode/nick-mobile.git"
+  },
+  "keywords": [
+    "vue",
+    "ui"
+  ],
+  "author": "Nick Chu <nickchu15@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NickChuCode/nick-mobile/issues"
+  },
+  "homepage": "https://github.com/NickChuCode/nick-mobile#readme"
+}
