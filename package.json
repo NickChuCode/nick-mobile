@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/NickChuCode/nick-mobile/issues"
   },
-  "homepage": "https://github.com/NickChuCode/nick-mobile#readme"
+  "homepage": "https://github.com/NickChuCode/nick-mobile#readme",
+  "dependencies": {
+    "vue": "^2.6.9"
+  }
 }
