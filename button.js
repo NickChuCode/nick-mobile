@@ -1,6 +1,6 @@
 Vue.component('g-button', {
     template: `
-        <button>hi there</button>
+        <button class="g-button">hi there</button>
     `
 })
 
