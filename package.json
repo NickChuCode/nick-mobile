@@ -22,5 +22,8 @@
   "homepage": "https://github.com/NickChuCode/nick-mobile#readme",
   "dependencies": {
     "vue": "^2.6.9"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3"
   }
 }
