@@ -1,9 +1,14 @@
 <template>
-    <button class="g-button">按钮</button>
+    <button class="g-button">
+        <svg v-if="icon" class="icon"><use :xlink:href="`#n-${icon}`"></use></svg>
+        <slot></slot>
+    </button>
 </template>
 
 <script>
-    export default {}
+    export default {
+        props: ['icon']
+    }
 </script>
 
 <style lang="scss">
