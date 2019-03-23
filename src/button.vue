@@ -9,7 +9,16 @@
 
 <script>
     export default {
-        props: ['icon', 'iconPosition']
+        props: {
+            icon: {},
+            iconPosition: {
+                type: String,
+                default: 'left',
+                validator (value) { // 可以给属性添加检查器，实现对属性值的控制
+                    return value === 'left' || value === 'right'
+                }
+            }
+        }
     }
 </script>
 
