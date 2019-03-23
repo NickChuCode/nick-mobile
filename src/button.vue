@@ -1,13 +1,15 @@
 <template>
-    <button class="g-button">
+    <button class="g-button" :class="{[`icon-${iconPosition}`]: true}">
         <svg v-if="icon" class="icon"><use :xlink:href="`#n-${icon}`"></use></svg>
-        <slot></slot>
+        <div class="content">
+            <slot></slot>
+        </div>
     </button>
 </template>
 
 <script>
     export default {
-        props: ['icon']
+        props: ['icon', 'iconPosition']
     }
 </script>
 
@@ -19,6 +21,10 @@
         border-radius: var(--border-radius);
         border: 1px solid var(--border-color);
         background: var(--button-bg);
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        vertical-align: middle; /* 遇到上下不对齐的，统一加vertical-align就可以解决，随便什么值，只要不是默认值即可 */
         &:hover {
             border-color: var(--border-color-hover);
         }
@@ -27,6 +33,25 @@
         }
         &:focus {
             outline: none;
+        }
+        > .icon {
+            order: 1;
+            margin-right: .1em;
+        }
+        > .content {
+            order: 2;
+        }
+
+        &.icon-right {
+            > .icon {
+                order: 2;
+                margin-right: 0;
+                margin-left: .1em;
+            }
+
+            > .content {
+                order: 1;
+            }
         }
     }
 </style>
