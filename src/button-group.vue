@@ -6,6 +6,14 @@
 
 <script>
     export default {
+        mounted() {
+            for (let node of this.$el.children) {
+                let name = node.nodeName.toLocaleLowerCase()
+                if (name !== 'button') {
+                    console.warn(`button group 下面应该都是 g-button，你写的是${name}`)
+                }
+            }
+        }
     }
 </script>
 
