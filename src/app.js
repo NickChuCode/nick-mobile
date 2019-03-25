@@ -23,6 +23,7 @@ chai.use(spy)
 const expect = chai.expect
 // 单元测试
 {
+    // 测试按钮含有 icon
     // 动态生成一个按钮
     const Constructor = Vue.extend(Button) // 因为Button是一个对象，不是构造函数，所以需要用extend得到对应的构造函数
     const vm = new Constructor({
