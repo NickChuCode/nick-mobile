@@ -21,7 +21,9 @@ import spy from 'chai-spies'
 chai.use(spy)
 
 const expect = chai.expect
-// 单元测试
+// 单元测试，每个测试用一个块级作用域包起来，避免变量冲突（作用域隔离）
+// 单元测试的两个条件：1.作用域隔离；2.断言
+// 这种写法是直接写，比较低级，后面会用karma来重构
 {
     // 测试按钮含有 icon
     // 动态生成一个按钮
