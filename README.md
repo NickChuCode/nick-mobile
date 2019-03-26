@@ -1,14 +1,53 @@
 # nick-mobile
 [![Build Status](https://travis-ci.org/NickChuCode/nick-mobile.svg?branch=master)](https://travis-ci.org/NickChuCode/nick-mobile)
 ## 介绍
-
+这是一个基于Vue的移动端 UI 框架
 ## 开始使用
-1. 安装
-使用本框架前，请在 CSS 中开启 border-box
-
-```
-*{box-sizing: border-box}
-```
+1. 添加 CSS 样式
+    使用本框架前，请在 CSS 中开启 border-box
+    
+    ```
+    *{box-sizing: border-box}
+    *::before{box-sizing: border-box}
+    *::after{box-sizing: border-box}
+    ```
+    IE 8 及以上浏览器都支持此样式。
+    使用时，还需要设置默认颜色等变量（后续会改为SCSS变量）
+    ```
+        :root {
+            --buton-height: 32px;
+            --font-size: 14px;
+            --button-height: 32px;
+            --button-bg: white;
+            --button-active-bg: #eee;
+            --border-radius: 4px;
+            --color: #333;
+            --border-color: #999;
+            --border-color-hover: #666;
+        }
+    
+    ```
+    IE 15 及以上浏览器都支持此样式
+    
+2. 安装 nick-mobile
+    ```
+    npm i -S nick-mobile
+    ```
+    
+3. 引入 nick-mobile
+    ```
+    import { Button } from 'nick-mobile'
+    import 'nick-mobile/dist/index.css'
+    
+    export default {
+      name: 'app',
+      components: {
+        HelloWorld,
+        "g-button": Button
+      }
+    }
+    ```
+    
 
 ## 文档
 
