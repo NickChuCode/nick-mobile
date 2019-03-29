@@ -4,6 +4,7 @@
   "description": "a Vue 2.x UI Framework",
   "main": "dist/index.js",
   "scripts": {
+    "start": "parcel index.html --no-cache",
     "dev-test": "parcel watch test/* --no-cache & karma start",
     "test": "parcel build test/*  --no-cache --no-minify && karma start --single-run"
   },

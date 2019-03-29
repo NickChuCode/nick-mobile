@@ -6,6 +6,7 @@
 
 <script>
     export default {
+        name: 'NickButtonGroup',
         mounted() {
             for (let node of this.$el.children) {
                 let name = node.nodeName.toLocaleLowerCase()

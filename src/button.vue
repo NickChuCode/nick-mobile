@@ -11,6 +11,7 @@
 <script>
     import Icon from './icon'
     export default {
+        name: 'NickButton',
         components: {
             'g-icon': Icon
         },
