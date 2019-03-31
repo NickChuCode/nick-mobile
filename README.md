@@ -113,3 +113,6 @@
         - 然后 继续 git commit 在 master上提交
         - 如果想回到之前的状态，直接 git checkout xxx 即可
         - 此外，当前分枝还在本地，需要使用 git push origin button-and-input:button-and-input来推送到 github, 其中冒号前的是本地分枝名，后面是远程分枝名
+    
+   6. vue技巧和注意事项
+        - div#app是vue初始化的标签，里面不能写style，这是规则
