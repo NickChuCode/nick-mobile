@@ -35,9 +35,47 @@
             margin: 20px;
         }
     </style>
+    <style>
+        .row {
+            display: flex;
+        }
+        .col {
+            height: 100px;
+            width: 50%;
+            background: grey;
+            border: 1px solid red;
+        }
+        .col[data-span="2"] {
+            width: 8.333333%;
+        }
+        /*网格系统一般是24/16/12，用24比较方便计算*/
+        /*这样的data-span要写24个，非常不方便，所以用sass*/
+        .col[data-span="22"] {
+            width: 91.666667%;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col" data-span="2"></div>
+        <div class="col" data-span="22"></div>
+    </div>
     <div class="box">
 <!--        input变，message变-->
         <g-input v-model="message"></g-input>
