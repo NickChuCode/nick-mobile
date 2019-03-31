@@ -39,6 +39,14 @@
 <body>
 <div id="app">
     <div class="box">
+<!--        input变，message变-->
+        <g-input v-model="message"></g-input>
+        <p>{{ message }}</p>
+<!--        message变，input变-->
+<!--        这两个合起来，就是双向绑定-->
+        <button @click="message += 1">+1</button>
+    </div>
+    <div class="box">
         <g-input value="张三" disabled></g-input>
         <!--    区别是 disabled不能focus，但是readonly可以-->
         <g-input value="李斯" readonly></g-input>

@@ -1,3 +1,4 @@
+// karma的作用主要是打开浏览器，配置在这里
 module.exports = function (config) {
     config.set({
 
@@ -5,6 +6,8 @@ module.exports = function (config) {
         basePath: '',
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+        // 打开 mocha 以后，就有了 it 和 describe 两个函数
+        // sinon 提供 fake，sinon-chai 提供 calledWith，chai 提供的是 expect
         frameworks: ['mocha', 'sinon-chai'],
         client: {
             chai: {
@@ -54,6 +57,7 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+        // 这个就是karma打开的浏览器
         browsers: ['ChromeHeadless'],
 
 

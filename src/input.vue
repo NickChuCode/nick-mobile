@@ -1,11 +1,12 @@
 <template>
 <!--    与:class="{'error': error}"效果是完全一样的-->
     <div class="wrapper" :class="{error}">
+<!--        实现双向绑定的两个条件：1. 绑定value，2. 触发input事件，并把值传回去-->
         <input type="text" :value="value" :disabled="disabled" :readonly="readonly"
-               @change="$emit('change', $event, 'hi')"
-               @input="$emit('input', $event)"
-               @focus="$emit('focus', $event)"
-               @blur="$emit('blur', $event)"
+               @change="$emit('change', $event.target.value, 'hi')"
+               @input="$emit('input', $event.target.value)"
+               @focus="$emit('focus', $event.target.value)"
+               @blur="$emit('blur', $event.target.value)"
         >
         <template v-if="error">
 <!--            如果不想加多余的div层级，就直接使用template，这样下面的icon和span在v-if成立的时候，直接与input同级-->
