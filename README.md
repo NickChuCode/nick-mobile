@@ -106,3 +106,10 @@
         - git reset --hard commit的一串数字
         - 注意，上面这个命令非常危险，记得先commit，再做这个事情，否则会把当前代码更改都删除
         - 定位出问题的变更以后，使用 git show 变更commit数字，可以看到改了哪些东西
+        
+   5. 创建分枝的工作方法
+        - 我们做完一个阶段的工作，需要保存一个状态，就可以创建一个新的分枝，保留在那里，然后继续在master分枝上提交
+        - 先使用 git branch xxx 来创建这个分枝，当前状态就保留下来了，xxx比如是button-and-input
+        - 然后 继续 git commit 在 master上提交
+        - 如果想回到之前的状态，直接 git checkout xxx 即可
+        - 此外，当前分枝还在本地，需要使用 git push origin button-and-input:button-and-input来推送到 github, 其中冒号前的是本地分枝名，后面是远程分枝名
