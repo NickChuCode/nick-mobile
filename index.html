@@ -57,11 +57,18 @@
     </g-row>
     <g-row>
         <g-col span="2"></g-col>
-        <g-col span="22"></g-col>
+        <g-col span="20" offset="2"></g-col>
     </g-row>
     <g-row>
-        <g-col span="4"></g-col>
-        <g-col span="20"></g-col>
+<!--        只要这些 span 和 offset 加起来等于24即可-->
+        <g-col span="2"></g-col>
+        <g-col span="17" offset="5"></g-col>
+    </g-row>
+    <g-row>
+<!--        用单元测试去测试 css 是很麻烦的，所以直接用肉眼看-->
+        <g-col span="2"></g-col>
+        <g-col span="10" offset="5"></g-col>
+        <g-col span="2" offset="5"></g-col>
     </g-row>
     <div class="box">
 <!--        input变，message变-->
