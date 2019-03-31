@@ -38,38 +38,40 @@
 </head>
 <body>
 <div id="app">
-    <g-row>
-        <g-col></g-col>
-        <g-col></g-col>
-    </g-row>
-    <g-row>
-        <g-col></g-col>
-        <g-col></g-col>
-        <g-col></g-col>
-    </g-row>
-    <g-row>
-<!--        g-col的width是50%，但为什么没有换行，因为row的样式中，没有写flex-wrap，默认是nowrap，如果写成wrap就会换行-->
-<!--        此外，如果写flex-shrink:0，即不缩放，虽然不换行，但会延伸出去-->
-        <g-col></g-col>
-        <g-col></g-col>
-        <g-col></g-col>
-        <g-col></g-col>
-    </g-row>
-    <g-row>
-        <g-col span="2"></g-col>
-        <g-col span="20" offset="2"></g-col>
-    </g-row>
-    <g-row>
-<!--        只要这些 span 和 offset 加起来等于24即可-->
-        <g-col span="2"></g-col>
-        <g-col span="17" offset="5"></g-col>
-    </g-row>
-    <g-row>
-<!--        用单元测试去测试 css 是很麻烦的，所以直接用肉眼看-->
-        <g-col span="2"></g-col>
-        <g-col span="10" offset="5"></g-col>
-        <g-col span="2" offset="5"></g-col>
-    </g-row>
+    <div style="border: 1px solid black;">
+        <g-row gutter="20">
+            <g-col gutter="20"></g-col>
+            <g-col gutter="20"></g-col>
+        </g-row>
+        <g-row gutter="20">
+            <g-col></g-col>
+            <g-col></g-col>
+            <g-col></g-col>
+        </g-row>
+        <g-row gutter="20">
+            <!--        g-col的width是50%，但为什么没有换行，因为row的样式中，没有写flex-wrap，默认是nowrap，如果写成wrap就会换行-->
+            <!--        此外，如果写flex-shrink:0，即不缩放，虽然不换行，但会延伸出去-->
+            <g-col></g-col>
+            <g-col></g-col>
+            <g-col></g-col>
+            <g-col></g-col>
+        </g-row>
+        <g-row gutter="20">
+            <g-col span="3"></g-col>
+            <g-col span="21"></g-col>
+        </g-row>
+        <g-row gutter="20">
+            <!--        只要这些 span 和 offset 加起来等于24即可-->
+            <g-col span="2"></g-col>
+            <g-col span="17" offset="5"></g-col>
+        </g-row>
+        <g-row gutter="20">
+            <!--        用单元测试去测试 css 是很麻烦的，所以直接用肉眼看-->
+            <g-col span="2"></g-col>
+            <g-col span="10" offset="5"></g-col>
+            <g-col span="2" offset="5"></g-col>
+        </g-row>
+    </div>
     <div class="box">
 <!--        input变，message变-->
         <g-input v-model="message"></g-input>
