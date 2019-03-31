@@ -35,47 +35,34 @@
             margin: 20px;
         }
     </style>
-    <style>
-        .row {
-            display: flex;
-        }
-        .col {
-            height: 100px;
-            width: 50%;
-            background: grey;
-            border: 1px solid red;
-        }
-        .col[data-span="2"] {
-            width: 8.333333%;
-        }
-        /*网格系统一般是24/16/12，用24比较方便计算*/
-        /*这样的data-span要写24个，非常不方便，所以用sass*/
-        .col[data-span="22"] {
-            width: 91.666667%;
-        }
-    </style>
 </head>
 <body>
 <div id="app">
-    <div class="row">
-        <div class="col"></div>
-        <div class="col"></div>
-    </div>
-    <div class="row">
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-    </div>
-    <div class="row">
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col"></div>
-    </div>
-    <div class="row">
-        <div class="col" data-span="2"></div>
-        <div class="col" data-span="22"></div>
-    </div>
+    <g-row>
+        <g-col></g-col>
+        <g-col></g-col>
+    </g-row>
+    <g-row>
+        <g-col></g-col>
+        <g-col></g-col>
+        <g-col></g-col>
+    </g-row>
+    <g-row>
+<!--        g-col的width是50%，但为什么没有换行，因为row的样式中，没有写flex-wrap，默认是nowrap，如果写成wrap就会换行-->
+<!--        此外，如果写flex-shrink:0，即不缩放，虽然不换行，但会延伸出去-->
+        <g-col></g-col>
+        <g-col></g-col>
+        <g-col></g-col>
+        <g-col></g-col>
+    </g-row>
+    <g-row>
+        <g-col span="2"></g-col>
+        <g-col span="22"></g-col>
+    </g-row>
+    <g-row>
+        <g-col span="4"></g-col>
+        <g-col span="20"></g-col>
+    </g-row>
     <div class="box">
 <!--        input变，message变-->
         <g-input v-model="message"></g-input>
