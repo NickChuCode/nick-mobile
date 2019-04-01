@@ -12,6 +12,7 @@
             padding: 0;
             box-sizing: border-box;
         }
+        img {max-width: 100%}
         :root {
             --buton-height: 32px;
             --font-size: 14px;
@@ -37,69 +38,115 @@
     </style>
 </head>
 <body>
+<style>
+    .demoBox {
+        min-height: 50px;
+        background: grey;
+        border: 1px solid red;
+    }
+    .logo-wrapper {
+        padding: 10px;
+    }
+</style>
 <div id="app">
-    <div style="border: 1px solid black;">
-        <g-row gutter="20">
-            <g-col gutter="20">1</g-col>
-            <g-col gutter="20">2</g-col>
-        </g-row>
-        <g-row gutter="20">
-            <g-col>1</g-col>
-            <g-col>2</g-col>
-            <g-col>3</g-col>
-        </g-row>
-        <g-row gutter="20">
-            <!--        g-col的width是50%，但为什么没有换行，因为row的样式中，没有写flex-wrap，默认是nowrap，如果写成wrap就会换行-->
-            <!--        此外，如果写flex-shrink:0，即不缩放，虽然不换行，但会延伸出去-->
-            <g-col>1</g-col>
-            <g-col>2</g-col>
-            <g-col>3</g-col>
-            <g-col>4</g-col>
-        </g-row>
-        <g-row gutter="20">
-            <g-col span="3"></g-col>
-            <g-col span="21"></g-col>
-        </g-row>
-        <g-row gutter="20">
-            <!--        只要这些 span 和 offset 加起来等于24即可-->
-            <g-col span="2"></g-col>
-            <g-col span="17" offset="5"></g-col>
-        </g-row>
-        <g-row gutter="20">
-            <!--        用单元测试去测试 css 是很麻烦的，所以直接用肉眼看-->
-            <g-col span="2"></g-col>
-            <g-col span="10" offset="5"></g-col>
-            <g-col span="2" offset="5"></g-col>
-        </g-row>
-    </div>
-    <div class="box">
-<!--        input变，message变-->
-        <g-input v-model="message"></g-input>
-        <p>{{ message }}</p>
-<!--        message变，input变-->
-<!--        这两个合起来，就是双向绑定-->
-        <button @click="message += 1">+1</button>
-    </div>
-    <div class="box">
-        <g-input value="张三" disabled></g-input>
-        <!--    区别是 disabled不能focus，但是readonly可以-->
-        <g-input value="李斯" readonly></g-input>
-        <g-input value="王五"></g-input>
-    </div>
-    <div class="box">
-        <g-input value="王" error="姓名不能少于两个字" @change="inputChange"></g-input>
-    </div>
-    <div class="box">
-        <g-button :loading="loading1" @click="loading1 = !loading1">我爱JS</g-button>
-        <g-button icon="settings" :loading="loading2" @click="loading2 = !loading2">按钮</g-button>
-        <g-button icon="settings" :loading="loading3" icon-position="right" @click="loading3 = !loading3">我爱JS</g-button>
-        <g-button-group>
-            <g-button icon="left">上一页</g-button>
-            <g-button>更多</g-button>
-            <g-button icon="right" icon-position="right">下一页</g-button>
-        </g-button-group>
-        <div id="test"></div>
-    </div>
+    <g-row class="topbar">
+        <g-col class="demoBox" span="9">
+            <g-row align="left">
+                <g-col>1</g-col>
+                <g-col>2</g-col>
+                <g-col>3</g-col>
+                <g-col>4</g-col>
+            </g-row>
+        </g-col>
+        <g-col class="demoBox" span="15">
+            <g-row align="right">
+                <g-col>1</g-col>
+                <g-col>2</g-col>
+                <g-col>3</g-col>
+                <g-col>4</g-col>
+                <g-col>5</g-col>
+                <g-col>6</g-col>
+                <g-col>7</g-col>
+            </g-row>
+        </g-col>
+    </g-row>
+    <g-row class="logo-and-search-and-qrcode">
+        <g-col class="demoBox" span="4">
+            <g-row align="center">
+                <g-col>
+                    <div class="logo-wrapper">
+                        <img class="logo" src="https://img.alicdn.com/tfs/TB1UDHOcwoQMeJjy0FoXXcShVXa-286-118.png" alt="">
+                    </div>
+                </g-col>
+            </g-row>
+
+        </g-col>
+        <g-col class="demoBox" span="14"></g-col>
+        <g-col class="demoBox" span="6"></g-col>
+    </g-row>
+
+<!--    <div style="border: 1px solid black;">-->
+<!--        <g-row gutter="20">-->
+<!--            <g-col gutter="20">1</g-col>-->
+<!--            <g-col gutter="20">2</g-col>-->
+<!--        </g-row>-->
+<!--        <g-row gutter="20">-->
+<!--            <g-col>1</g-col>-->
+<!--            <g-col>2</g-col>-->
+<!--            <g-col>3</g-col>-->
+<!--        </g-row>-->
+<!--        <g-row gutter="20">-->
+<!--            &lt;!&ndash;        g-col的width是50%，但为什么没有换行，因为row的样式中，没有写flex-wrap，默认是nowrap，如果写成wrap就会换行&ndash;&gt;-->
+<!--            &lt;!&ndash;        此外，如果写flex-shrink:0，即不缩放，虽然不换行，但会延伸出去&ndash;&gt;-->
+<!--            <g-col>1</g-col>-->
+<!--            <g-col>2</g-col>-->
+<!--            <g-col>3</g-col>-->
+<!--            <g-col>4</g-col>-->
+<!--        </g-row>-->
+<!--        <g-row gutter="20">-->
+<!--            <g-col span="3"></g-col>-->
+<!--            <g-col span="21"></g-col>-->
+<!--        </g-row>-->
+<!--        <g-row gutter="20">-->
+<!--            &lt;!&ndash;        只要这些 span 和 offset 加起来等于24即可&ndash;&gt;-->
+<!--            <g-col span="2"></g-col>-->
+<!--            <g-col span="17" offset="5"></g-col>-->
+<!--        </g-row>-->
+<!--        <g-row gutter="20">-->
+<!--            &lt;!&ndash;        用单元测试去测试 css 是很麻烦的，所以直接用肉眼看&ndash;&gt;-->
+<!--            <g-col span="2"></g-col>-->
+<!--            <g-col span="10" offset="5"></g-col>-->
+<!--            <g-col span="2" offset="5"></g-col>-->
+<!--        </g-row>-->
+<!--    </div>-->
+<!--    <div class="box">-->
+<!--&lt;!&ndash;        input变，message变&ndash;&gt;-->
+<!--        <g-input v-model="message"></g-input>-->
+<!--        <p>{{ message }}</p>-->
+<!--&lt;!&ndash;        message变，input变&ndash;&gt;-->
+<!--&lt;!&ndash;        这两个合起来，就是双向绑定&ndash;&gt;-->
+<!--        <button @click="message += 1">+1</button>-->
+<!--    </div>-->
+<!--    <div class="box">-->
+<!--        <g-input value="张三" disabled></g-input>-->
+<!--        &lt;!&ndash;    区别是 disabled不能focus，但是readonly可以&ndash;&gt;-->
+<!--        <g-input value="李斯" readonly></g-input>-->
+<!--        <g-input value="王五"></g-input>-->
+<!--    </div>-->
+<!--    <div class="box">-->
+<!--        <g-input value="王" error="姓名不能少于两个字" @change="inputChange"></g-input>-->
+<!--    </div>-->
+<!--    <div class="box">-->
+<!--        <g-button :loading="loading1" @click="loading1 = !loading1">我爱JS</g-button>-->
+<!--        <g-button icon="settings" :loading="loading2" @click="loading2 = !loading2">按钮</g-button>-->
+<!--        <g-button icon="settings" :loading="loading3" icon-position="right" @click="loading3 = !loading3">我爱JS</g-button>-->
+<!--        <g-button-group>-->
+<!--            <g-button icon="left">上一页</g-button>-->
+<!--            <g-button>更多</g-button>-->
+<!--            <g-button icon="right" icon-position="right">下一页</g-button>-->
+<!--        </g-button-group>-->
+<!--        <div id="test"></div>-->
+<!--    </div>-->
 
 </div>
 <script src="./src/app.js"></script>
