@@ -1,5 +1,5 @@
 <template>
-    <div class="toast" ref="wrapper">
+    <div class="toast" ref="wrapper" :class="toastClasses">
         <div class="message">
             <slot v-if="!enableHtml"></slot>
             <!-- 用 div + v-html 来实现传入带样式文字的特性，但需要用enableHtml开启，因为引入html是一个危险的动作-->
@@ -47,6 +47,19 @@
             enableHtml: {
                 type: Boolean,
                 default: false
+            },
+            position: {
+                type: String,
+                default: 'top',
+                validator (value) {
+                    // 使用 indexOf 兼容性更好
+                    return ['top', 'bottom', 'middle'].indexOf(value) >= 0
+                }
+            }
+        },
+        computed: {
+            toastClasses () {
+                return {[`position-${this.position}`]: true}
             }
         },
         mounted() {
@@ -92,9 +105,7 @@
         min-height: $toast-height; // 很多文字的时候也能正确显示
         line-height: 1.8;
         position: fixed;
-        top: 0;
         left: 50%;
-        transform: translateX(-50%);
         display: flex; // 文字左右垂直居中最简单的方法，就是直接设置一个display: flex 和 下面的 align-items
         align-items: center;
         color: white;
@@ -113,6 +124,18 @@
             height: 100%; // 父元素改成 min-height 以后，这个就不起作用了(因为min-height不是高度，子元素不知道父元素的高度，所以高度100%就没有意义了)，需要通过 js 来改高度
             border-left: 1px solid #666;
             margin-left: 16px;
+        }
+        &.position-top {
+            top: 0;
+            transform: translateX(-50%);
+        }
+        &.position-bottom {
+            bottom: 0;
+            transform: translateX(-50%);
+        }
+        &.position-middle {
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
     }
 
