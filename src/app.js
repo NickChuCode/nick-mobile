@@ -33,9 +33,13 @@ new Vue({
         loading3: false,
         message: 'hi'
     },
+    created () {
+        this.$toast('文字', {
+            enableHtml: false
+        })
+    },
     methods: {
         showToast() {
-            this.$toast('i am a toast')
         }
     }
 })
