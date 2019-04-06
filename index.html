@@ -31,39 +31,15 @@
         }
     </style>
     <style>
-        .box {
+        button {
             margin: 20px;
         }
     </style>
 </head>
 <body>
-<style>
-    .demo {
-        border: 1px solid #666;
-        min-height: 100px;
-    }
-    .sider {
-        width: 200px;
-        background: #333;
-    }
-    .header {
-        height: 100px;
-        background: #999;
-    }
-    .footer {
-        height: 50px;
-        background: #ccc;
-    }
-</style>
+
 <div id="app">
-    <g-layout style="height: 100vh">
-        <g-sider>sider</g-sider>
-        <g-layout>
-            <g-header>header</g-header>
-            <g-content >content</g-content>
-            <g-footer>footer</g-footer>
-        </g-layout>
-    </g-layout>
+   <button @click="showToast">点我</button>
 </div>
 <script src="./src/app.js"></script>
 </body>
