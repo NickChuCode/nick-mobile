@@ -65,7 +65,6 @@
             },
             colClass () {
                 let {span, offset, ipad, narrowPc, pc, widePc} = this //注意这种写法
-                console.log(ipad);
                 return [
                     ...this.createClasses({span, offset}),
                     ...this.createClasses(ipad, 'ipad-'),

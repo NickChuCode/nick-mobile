@@ -31,12 +31,11 @@
         name: "NickToast",
         props: {
             autoClose: {
-                type: Boolean,
-                default: true
-            },
-            autoCloseDelay: {
-                type: Number,
-                default: 50
+                type: [Boolean, Number],
+                default: false,
+                validator (value) {
+                    return value === false || typeof value === 'number'
+                }
             },
             closeButton: {
                 type: Object,
@@ -74,7 +73,7 @@
                 if (this.autoClose) {
                     setTimeout(() => {
                         this.close()
-                    }, this.autoCloseDelay * 1000)
+                    }, this.autoClose * 1000)
                 }
             },
             updateStyles () {
@@ -93,7 +92,7 @@
             onClickClose () {
                 this.close()
                 if (this.closeButton && typeof this.closeButton.callback === 'function') { // 防御性编程
-                    this.closeButton.callback() // 如果用户想在app.js中调用toast中的方法，可以把this从这里传过去，this就是这个toast实例
+                    this.closeButton.callback(this) // 如果用户想在app.js中调用toast中的方法，可以把this从这里传过去，this就是这个toast实例
                 }
             }
         }
