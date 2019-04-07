@@ -135,4 +135,6 @@
         - 向下兼容，就是说如果是ipad，就向下取phone的样式，如果是wide pc，就向下取pc的样式
         - 这实际上就是 Mobile First (移动端优先)
         
-   8. 如果commit以后，发现少提交了东西，可以再次点击commit，然后选中amend commit来把未提交的东西补充进去
+   8. Git相关技巧
+        - 如果commit以后，发现少提交了东西，可以再次点击commit，然后选中amend commit来把未提交的东西补充进去
+        - 如果一次改了多个功能，最好一个功能一个功能 commit，具体方法是commit的时候，勾选一个功能对应的更改，然后 commit，然后再commit的时候，勾选另一个功能的更改，再 commit

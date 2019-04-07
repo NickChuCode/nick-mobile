@@ -1,14 +1,17 @@
 <template>
-    <div class="toast" ref="wrapper" :class="toastClasses">
-        <div class="message">
-            <slot v-if="!enableHtml"></slot>
-            <!-- 用 div + v-html 来实现传入带样式文字的特性，但需要用enableHtml开启，因为引入html是一个危险的动作-->
-            <div v-else v-html="$slots.default[0]"></div>
-        </div>
-        <div class="line" ref="line"></div>
-        <span class="close" v-if="closeButton" @click="onClickClose">
+<!--    这个wrapper只负责一件事情，居中，让toast自己去负责上下动，这样transform就不会覆盖，就不会出现动画跳的现象了-->
+    <div class="wrapper" :class="toastClasses">
+        <div class="toast" ref="toast">
+            <div class="message">
+                <slot v-if="!enableHtml"></slot>
+                <!-- 用 div + v-html 来实现传入带样式文字的特性，但需要用enableHtml开启，因为引入html是一个危险的动作-->
+                <div v-else v-html="$slots.default[0]"></div>
+            </div>
+            <div class="line" ref="line"></div>
+            <span class="close" v-if="closeButton" @click="onClickClose">
             {{ closeButton.text }}
         </span>
+        </div>
     </div>
 </template>
 
@@ -75,11 +78,11 @@
                 }
             },
             updateStyles () {
-                // 因为直接用 wrapper.style 只能获取内联元素的高度（？），所以用getBoundingClientRect
+                // 因为直接用 toast.style 只能获取内联元素的高度（？），所以用getBoundingClientRect
                 // 但直接这样，height还是0，这种眼睛看不是0，获取为0，一般都是异步的问题
                 // 所以使用Vue提供的nextTick来解决
                 this.$nextTick(() => {
-                    this.$refs.line.style.height = `${this.$refs.wrapper.getBoundingClientRect().height}px`
+                    this.$refs.line.style.height = `${this.$refs.toast.getBoundingClientRect().height}px`
                 })
             },
             close () {
@@ -101,18 +104,53 @@
     $font-size: 14px;
     $toast-height: 40px;
     $toast-bg: rgba(0, 0, 0, 0.75);
+    $animation-duration: 300ms;
+    @keyframes slide-up {
+        0% {opacity: 0; transform: translateY(100%);}
+        100% {opacity: 1; transform: translateY(0%);}
+    }
+    @keyframes slide-down {
+        0% {opacity: 0; transform: translateY(-100%);}
+        100% {opacity: 1; transform: translateY(0%);}
+    }
     @keyframes fade-in {
         0% {opacity: 0;}
         100% {opacity: 1;}
     }
 
+    .wrapper {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        &.position-top {
+            top: 0;
+            .toast {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                animation: slide-down $animation-duration;
+            }
+        }
+        &.position-bottom {
+            bottom: 0;
+            .toast {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+                animation: slide-up $animation-duration;
+            }
+        }
+        &.position-middle {
+            top: 50%;
+            transform: translate(-50%, -50%);
+            .toast {
+                animation: fade-in $animation-duration;
+            }
+        }
+    }
+
     .toast {
-        animation: fade-in 1s;
         font-size: $font-size;
         min-height: $toast-height; // 很多文字的时候也能正确显示
         line-height: 1.8;
-        position: fixed;
-        left: 50%;
         display: flex; // 文字左右垂直居中最简单的方法，就是直接设置一个display: flex 和 下面的 align-items
         align-items: center;
         color: white;
@@ -132,18 +170,7 @@
             border-left: 1px solid #666;
             margin-left: 16px;
         }
-        &.position-top {
-            top: 0;
-            transform: translateX(-50%);
-        }
-        &.position-bottom {
-            bottom: 0;
-            transform: translateX(-50%);
-        }
-        &.position-middle {
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
+
     }
 
 </style>

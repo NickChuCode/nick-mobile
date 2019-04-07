@@ -34,9 +34,19 @@ new Vue({
         message: 'hi'
     },
     methods: {
-        showToast() {
+        // 小技巧：如果函数只有一个地方不一样，没有必要重写，复用即可
+        showToast1 () {
+            this.showToast('top')
+        },
+        showToast2 () {
+            this.showToast('middle')
+        },
+        showToast3 () {
+            this.showToast('bottom')
+        },
+        showToast(position) {
             this.$toast(`文字，id为${parseInt(Math.random() * 100)}`, {
-            position: 'middle',
+            position,
             enableHtml: false,
             closeButton: {
                 text: '已充值',
