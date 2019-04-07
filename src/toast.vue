@@ -84,6 +84,7 @@
             },
             close () {
                 this.$el.remove() // 当然可以用CSS把它去掉，但是最好的办法就是彻底remove掉
+                this.$emit('close') // 通知外部已经被关掉了
                 this.$destroy() // 然后，把自己注销掉(注意：destroy并不会把元素从页面中删掉，所以必须加前面的remove)
             },
             onClickClose () {
