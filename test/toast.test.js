@@ -38,7 +38,7 @@ describe('Toast', () => {
             //     done()
             // }, 1500)
         })
-        it ('接受 closeButton', () => {
+        it ('接受 closeButton', (done) => {
             const callback = sinon.fake()
             const Constructor = Vue.extend(Toast)
             const vm = new Constructor({
@@ -51,8 +51,12 @@ describe('Toast', () => {
             }).$mount()
             let closeBtn = vm.$el.querySelector('.close')
             expect(closeBtn.textContent.trim()).to.eq('关闭吧')
-            // closeBtn.click() 一直报错，有问题
-            //expect(callback).to.have.been.called
+            setTimeout(() => {
+                closeBtn.click() // 之前报错是因为在 toast 没有被渲染完，就 close 掉了，所以会报错，所以使用 settimeout 异步来解决这个问题
+                expect(callback).to.have.been.called
+                done()
+            })
+
         })
         it ('接受 enableHtml', () => {
             const Constructor = Vue.extend(Toast)
