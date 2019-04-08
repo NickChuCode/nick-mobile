@@ -120,6 +120,7 @@
         - Vue的渲染过程并不是同步的（可能是基于性能的考虑）
         - name的作用：1.在vue开发者工具中显示这个名字，2.在$options中有name属性，可以识别这个组件
         - 是直接createElement一个div好，还是使用Vue的组件好？当然是使用Vue的组件好，因为一个明显的好处是：我们可以在template中自由的定义事件或者其他的东西，而直接使用js创建的div则麻烦的多
+        - `<g-tabs selected="selectedTab" @update:selected="selectedTab = $event">`完全等价于`<g-tabs :selected.sync="selectedTab">`, sync是语法糖
 
    7. 什么时候需要对代码进行重构
         - 重构是微小调整，大调整是重写
@@ -143,3 +144,10 @@
         - 根据错误提示，大概确定位置
         - 用二分法定位定位到底是哪里出错
         - log + 分析代码
+        
+   10. 写代码的四个阶段
+        - 需求分析
+        - UI
+        - 代码
+        - 测试
+        - 一定要自己把这四个过一遍
