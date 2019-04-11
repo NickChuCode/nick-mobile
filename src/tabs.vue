@@ -36,7 +36,19 @@
             }
         },
         mounted() {
-            this.eventBus.$emit('update:selected', this.selected)
+            // 这里是初次获取 selected 的地方
+            // 这里我们要获得 selected 对应的head，来做动画
+            this.$children.forEach((vm) => {
+                if (vm.$options.name === 'NickTabsHead') {
+                    vm.$children.forEach((childVm) => {
+                        if (childVm.$options.name === 'NickTabsItem' && childVm.name === this.selected) {
+                            console.log(childVm.$el)
+                            this.eventBus.$emit('update:selected', this.selected, childVm)
+                        }
+                    })
+                }
+            })
+
         }
     }
 </script>

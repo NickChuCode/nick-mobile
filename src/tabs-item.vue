@@ -50,6 +50,7 @@
 </script>
 
 <style scoped lang="scss">
+    $blue: blue;
     .tabs-item {
         flex-shrink: 0;
         padding: 0 2em;
@@ -58,7 +59,8 @@
         display: flex;
         align-items: center;
         &.active {
-            background: red;
+            color: $blue;
+            font-weight: bold;
         }
     }
 </style>
