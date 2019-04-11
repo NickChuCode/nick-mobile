@@ -32,11 +32,13 @@
 <style scoped lang="scss">
     $tabs-height: 40px;
     $blue: blue;
+    $border-color: #ddd;
     .tabs-head {
         display: flex;
         justify-content: flex-start;
         height: $tabs-height;
         position: relative;
+        border-bottom: 1px solid $border-color;
         > .line {
             position: absolute;
             bottom: 0;
@@ -46,6 +48,10 @@
         > .actions-wrapper {
             /*使用这个属性就可以让这个按钮默认靠右，经验！*/
             margin-left: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 1em;
         }
     }
 </style>
