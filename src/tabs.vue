@@ -42,7 +42,6 @@
                 if (vm.$options.name === 'NickTabsHead') {
                     vm.$children.forEach((childVm) => {
                         if (childVm.$options.name === 'NickTabsItem' && childVm.name === this.selected) {
-                            console.log(childVm.$el)
                             this.eventBus.$emit('update:selected', this.selected, childVm)
                         }
                     })

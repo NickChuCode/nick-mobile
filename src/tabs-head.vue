@@ -12,7 +12,20 @@
 <script>
     export default {
         name: "NickTabsHead",
-        inject: ['eventBus']
+        inject: ['eventBus'],
+        mounted() {
+            this.eventBus.$on('update:selected', (item, vm) => {
+                // getBoundingClientRect里有四个属性：width, height, top, left
+                let { width, height, top, left } = vm.$el.getBoundingClientRect()
+                // 下边加蓝线
+                this.$refs.line.style.width = `${width}px`
+                // 让蓝线随着 tab 移动，一开始就在对应的位置上
+                // this.$refs.line.style.left = `${left}px`
+                // 用 transform 来移动效率更高，因为有硬件加速，但是一开始会有一个滑动到对应位置的动画，
+                // 所以可以根据实际情况，来选择到底使用 left，还是使用 transform
+                this.$refs.line.style.transform = `translateX(${left}px)`
+            })
+        }
     }
 </script>
 
@@ -23,13 +36,12 @@
         display: flex;
         justify-content: flex-start;
         height: $tabs-height;
-        border: 1px solid red;
         position: relative;
         > .line {
             position: absolute;
             bottom: 0;
             border-bottom: 1px solid $blue;
-            width: 100px;
+            transition: all .25s
         }
         > .actions-wrapper {
             /*使用这个属性就可以让这个按钮默认靠右，经验！*/
