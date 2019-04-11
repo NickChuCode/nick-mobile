@@ -6,6 +6,7 @@
 </template>
 
 <script>
+    import Vue from 'vue'
     export default {
         name: "NickTabs",
         props: {
@@ -21,8 +22,21 @@
                 }
             }
         },
-        created() {
-            // this.$emit('update:selected', 'xxx')
+        data () {
+          return {
+              eventBus: new Vue()
+          }
+        },
+        provide () {
+            // 先将 eventBus 定义为 data，这样 tabs 本身就可以访问到这个 eventBus，然后用 provide 提供出去，这样所有的组件都可以访问这个 eventBus
+            // 为什么要 new Vue，而不是直接写一个对象呢？因为 Vue 实例提供了 $emit, $off 和 $on 来实现事件的生成，取消和监听，正好适合做 eventBus
+            // 所以每一个 vue 组件都是一个独立的事件中心
+            return {
+                eventBus: this.eventBus
+            }
+        },
+        mounted() {
+            this.eventBus.$emit('update:selected', this.selected)
         }
     }
 </script>

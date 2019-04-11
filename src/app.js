@@ -38,10 +38,7 @@ Vue.use(plugin)
 new Vue({
     el: '#app',
     data: {
-        loading1: false,
-        loading2: true,
-        loading3: false,
-        message: 'hi'
+        selectedTab: 'sports'
     },
     methods: {
         // 小技巧：如果函数只有一个地方不一样，没有必要重写，复用即可

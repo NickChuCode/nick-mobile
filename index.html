@@ -30,22 +30,18 @@
             font-size: var(--font-size);
         }
     </style>
-    <style>
-        button {
-            margin: 20px;
-        }
-    </style>
 </head>
 <body>
 
 <div id="app">
-   <g-tabs selected="sports">
+   <g-tabs :selected.sync="selectedTab">
+        <!--如果下面组件中这个标签上有class，这里又给一个class，vue默认是会合并这两个class的（另一个可以这样做的属性是style），其他属性都是直接覆盖-->
        <g-tabs-head>
+           <!-- 这个可以选择放入组件的哪个插槽-->
+           <template slot="actions">
+               <button>设置</button>
+           </template>
            <g-tabs-item name="women">
-<!--               这个可以选择放入组件的哪个插槽-->
-               <template slot="actions">
-                   <button>设置</button>
-               </template>
                <g-icon name="settings"></g-icon>美女
            </g-tabs-item>
            <g-tabs-item name="finance" disabled>财经</g-tabs-item>

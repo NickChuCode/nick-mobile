@@ -121,6 +121,12 @@
         - name的作用：1.在vue开发者工具中显示这个名字，2.在$options中有name属性，可以识别这个组件
         - 是直接createElement一个div好，还是使用Vue的组件好？当然是使用Vue的组件好，因为一个明显的好处是：我们可以在template中自由的定义事件或者其他的东西，而直接使用js创建的div则麻烦的多
         - `<g-tabs selected="selectedTab" @update:selected="selectedTab = $event">`完全等价于`<g-tabs :selected.sync="selectedTab">`, sync是语法糖
+        - Vue的实例中，$开头的属性是提供给我们用的，_开头的属性是私有属性，是vue内部使用的，不要轻易使用
+        - provide是唯一一个可以跨组件调用的属性（组件上定义provide，里面的东西，这个组件的任何后代都可以访问到），在后代组件中通过inject: [xxx]来访问
+        - vue 的事件不会冒泡，所以 g-head 上 this.$emit 的事件是不会被 g-tabs 上被监听到的
+        - eventBus发出的事件不是组件发出的事件，所以组件标签上的@是监听不到这个事件的
+        - slot 上不能加 class，没有用
+        - props 和 data 的区别：当数据需要用户（前端开发者）传值的时候，用 props（类似函数中的形参）；当数据不需要用户传值，组件自身维护值的时候，就用 data，类似函数中的内部数据
 
    7. 什么时候需要对代码进行重构
         - 重构是微小调整，大调整是重写
