@@ -19,7 +19,7 @@
     .tabs-head {
         display: flex;
         justify-content: flex-start;
-        align-items: center;
+        height: $tabs-height;
         border: 1px solid red;
         > .actions-wrapper {
             /*使用这个属性就可以让这个按钮默认靠右，经验！*/
