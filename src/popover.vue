@@ -1,6 +1,7 @@
 <template>
-    <div class="popover" @click="xxx">
-        <div class="content-wrapper" v-if="visible">
+    <div class="popover" @click.stop="xxx">
+        <!--这里阻止冒泡，让我们点击弹出的popover的时候，不会消失-->
+        <div class="content-wrapper" v-if="visible" @click.stop>
             <slot name="content"></slot>
         </div>
         <slot></slot>
@@ -18,6 +19,20 @@
         methods: {
             xxx () {
                 this.visible = !this.visible
+                console.log('切换 visible')
+                if (this.visible === true) {
+                    setTimeout(() => {
+                        console.log('新增 document click 监听器')
+                        let eventHandler = () => {
+                            console.log('点击 body 就关闭 popover')
+                            this.visible = false
+                            console.log('删除监听器')
+                            document.removeEventListener('click', eventHandler) // 必须移除监听器，否则点击越多，积累的监听器越多
+                        }
+
+                        document.addEventListener('click', eventHandler)
+                    })
+                }
             }
         }
     }
