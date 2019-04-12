@@ -36,6 +36,11 @@
             }
         },
         mounted() {
+            if (this.$children.length === 0) {
+                // throw new Error('tabs 的子组件应该是 tabs-head 和 tabs-body')
+                console && console.warn &&
+                console.warn('tabs 的子组件应该是 tabs-head 和 tabs-body')
+            }
             // 这里是初次获取 selected 的地方
             // 这里我们要获得 selected 对应的head，来做动画
             this.$children.forEach((vm) => {

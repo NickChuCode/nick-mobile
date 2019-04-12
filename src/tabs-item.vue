@@ -1,5 +1,6 @@
 <template>
-    <div class="tabs-item" @click="onClick" :class="classes">
+    <!--把 name 放在 data-name 中，方便测试-->
+    <div class="tabs-item" @click="onClick" :class="classes" :data-name="name">
         <slot></slot>
     </div>
 </template>
@@ -34,6 +35,7 @@
         created () {
             // 为什么自己组件要自己监听自己的事件？
             // 因为：有可能是同一组件的其他实例发出事件，这个实例接受而已，比如点击了一个tab，所有的tab都需要知道有一个特定的tab被点击了
+            this.eventBus &&
             this.eventBus.$on('update:selected', (name) => {
                 if (name === this.name) {
                     this.active = true
@@ -45,7 +47,8 @@
         methods: {
             onClick () {
                 if (this.disabled) {return}
-                this.eventBus.$emit('update:selected', this.name, this)
+                this.eventBus && this.eventBus.$emit('update:selected', this.name, this)
+                this.$emit('click', this) // 这个事件触发主要用于测试
             }
         }
     }
@@ -67,6 +70,7 @@
         }
         &.disabled {
             color: $disabled-text-color;
+            cursor: not-allowed;
         }
     }
 </style>
