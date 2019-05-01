@@ -44,7 +44,7 @@ Vue.use(plugin)
 new Vue({
     el: '#app',
     data: {
-        selectedTab: 'sports'
+        selectedTab: "2"
     },
     methods: {
         // 小技巧：如果函数只有一个地方不一样，没有必要重写，复用即可
