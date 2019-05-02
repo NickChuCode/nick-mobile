@@ -1,4 +1,5 @@
 module.exports = {
+    base: '/nick-mobile/',
     title: 'vn-Mobile',
     description: '一个好用的 UI 组件库',
     themeConfig: {
