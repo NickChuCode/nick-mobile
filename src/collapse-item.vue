@@ -29,27 +29,23 @@
         },
         inject: ['eventBus'],
         mounted () {
-            this.eventBus && this.eventBus.$on("update:selected", (name) => {
-                if (name !== this.name) {
-                    this.close()
+            // eventBus 使用的窍门就是不要闭环，单向数据流最好管理，比如这里，子组件不触发更新状态，而是通过 update:removeSelected 和 update:addSelected 来
+            // 通知 eventBus 状态改变了，而 evnetBus 再在父组件中用 update:selected 来触发更新，通知子组件改变状态，集中管理
+            this.eventBus && this.eventBus.$on("update:selected", (names) => {
+                if (names.indexOf(this.name) >= 0) {
+                    this.open = true
                 } else {
-                    this.show()
+                   this.open = false
                 }
             })
         },
         methods: {
             toggle () {
                 if (this.open) {
-                    this.open = false
+                    this.eventBus && this.eventBus.$emit('update:removeSelected', this.name)
                 } else {
-                    this.eventBus && this.eventBus.$emit('update:selected', this.name)
+                    this.eventBus && this.eventBus.$emit('update:addSelected', this.name)
                 }
-            },
-            close () {
-                this.open = false
-            },
-            show () {
-                this.open = true
             }
         }
     }
